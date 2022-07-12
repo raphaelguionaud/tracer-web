@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SprintboardComponent } from './sprintboard/sprintboard.component';
+import { TicketService } from './services/ticket.service';
+import { SubSink } from 'subsink';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,10 @@ import { SprintboardComponent } from './sprintboard/sprintboard.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    SubSink,
+    TicketService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

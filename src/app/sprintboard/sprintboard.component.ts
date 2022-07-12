@@ -1,16 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { TicketService } from '../services/ticket.service';
+import { SubSink } from 'subsink';
 
 @Component({
   selector: 'app-sprintboard',
   templateUrl: './sprintboard.component.html',
   styleUrls: ['./sprintboard.component.scss'],
-  providers: [TicketService]
+  providers: []
 })
 export class SprintboardComponent implements OnInit {
 
+  tickets$: Observable<any> | undefined;
+
   constructor(
     private ticketService: TicketService,
+    private subs: SubSink,
   ) { }
 
   ngOnInit(): void {
@@ -18,9 +23,17 @@ export class SprintboardComponent implements OnInit {
   }
 
   getActiveTickets() {
-    this.ticketService.getTickets().subscribe(res => {
-      console.log(res);
+    this.tickets$ = this.ticketService.getTickets();
+  }
+
+  createTicket() {
+    this.ticketService.createTicket().subscribe(res => {
+      this.getActiveTickets();
     })
+  }
+
+  ngOnDestroy() {
+    this.subs.unsubscribe();
   }
 
 }

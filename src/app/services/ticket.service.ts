@@ -5,13 +5,15 @@ import { catchError, retry } from 'rxjs/operators';
 
 @Injectable()
 export class TicketService {
-    myUrl: string = 'package.json';
-
     constructor(
         private http: HttpClient
     ) {}
 
     getTickets() {
-        return this.http.get(this.myUrl);
+        return this.http.get('http://localhost:3000/tickets');
+    }
+
+    createTicket() {
+        return this.http.post('http://localhost:3000/tickets', null);
     }
 }

@@ -1,1 +1,9 @@
-<button>Test api</button>
+<div class="column">
+    <div class="column" *ngFor="let ticket of tickets$ | async">
+        <div>{{ ticket.name }}</div>
+        <div>{{ ticket.priority }}</div>
+        <div>{{ ticket.description }}</div>
+    </div>
+</div>
+
+<button (click)="createTicket()">Add ticket</button>

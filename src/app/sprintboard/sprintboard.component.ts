@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { TicketService } from '../services/ticket.service';
 import { SubSink } from 'subsink';
+import { Ticket } from '../models/ticket.model'
 
 @Component({
   selector: 'app-sprintboard',
@@ -10,30 +10,31 @@ import { SubSink } from 'subsink';
   providers: []
 })
 export class SprintboardComponent implements OnInit {
-
-  tickets$: Observable<any> | undefined;
+  tickets: Ticket[] = [];
 
   constructor(
-    private ticketService: TicketService,
+    private TicketService: TicketService,
     private subs: SubSink,
   ) { }
 
   ngOnInit(): void {
-    this.getActiveTickets();
+    this.TicketService.getTickets().subscribe((res: Ticket[]) => {
+      this.tickets = res;
+    });
   }
 
   getActiveTickets() {
-    this.tickets$ = this.ticketService.getTickets();
+
   }
 
-  createTicket() {
-    this.ticketService.createTicket().subscribe(res => {
-      this.getActiveTickets();
-    })
-  }
+  // createTicket() {
+  //   this.TicketService.createTicket().subscribe(res => {
+  //     this.getActiveTickets();
+  //   })
+  // }
 
-  ngOnDestroy() {
-    this.subs.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.subs.unsubscribe();
+  // }
 
 }

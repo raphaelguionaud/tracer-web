@@ -15,7 +15,7 @@
         <h2 class="normal-case text-xl primary pl-2 pb-2">To do</h2>
         <div class="column">
             <div id="all" cdkDropList
-            [cdkDropListData]="todo">
+            >
                 <div
                 class="example-box"
                 *ngFor="let ticket of todo"
@@ -34,12 +34,20 @@
     <div class="column-container">
         <h2 class="normal-case text-xl primary pl-2 pb-2">In development</h2>
         <div class="column">
-            <ticket-card *ngFor="let ticket of inDevelopment"
-            [name]="ticket.name" [priority]="ticket.priority"
-            [_id]="ticket._id" [description]="ticket.description"
-            [progress]="ticket.progress" [tags]="ticket.tags"
-            [type]="ticket.type">
-            </ticket-card>
+            <div id="all" cdkDropList
+            >
+                <div
+                class="example-box"
+                *ngFor="let ticket of todo"
+                cdkDrag>
+                <ticket-card
+                [name]="ticket.name" [priority]="ticket.priority"
+                [_id]="ticket._id" [description]="ticket.description"
+                [progress]="ticket.progress" [tags]="ticket.tags"
+                [type]="ticket.type">
+                </ticket-card>
+                </div>
+            </div>
         </div>
     </div>
 

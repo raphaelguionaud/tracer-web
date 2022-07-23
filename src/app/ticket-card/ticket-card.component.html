@@ -1,0 +1,20 @@
+<div class="card bordered w-50 bg-base-100 shadow-xl border-white">
+    <div class="card-body">
+      <h2 class="card-title">
+        {{ name }}
+        <div class="badge badge-primary" *ngIf="priority === 'Low'">
+          {{ priority }}
+        </div>
+        <div class="badge badge-secondary" *ngIf="priority === 'Medium'">
+          {{ priority }}
+        </div>
+        <div class="badge badge-accent" *ngIf="priority === 'High'">
+          {{ priority }}
+        </div>
+      </h2>
+      <p>{{ description }}</p>
+      <div class="card-actions justify-start">
+        <div class="badge badge-outline" *ngFor="let tag of tags">{{ tag }}</div>
+      </div>
+    </div>
+</div>

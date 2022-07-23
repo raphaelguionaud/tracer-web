@@ -1,17 +1,82 @@
 
-<div class="row">
-    <div class="column">
-        <div class="column" *ngFor="let ticket of tickets">
-            <div>{{ ticket.name }}</div>
-            <div>{{ ticket.priority }}</div>
-            <div>{{ ticket.description }}</div>
+<div cdkDropListGroup class="row">
+    <!-- <div
+        cdkDropList
+        #todoList="cdkDropList"
+        [cdkDropListData]="todo"
+        [cdkDropListConnectedTo]="[doneList]"
+        class="ticket-list"
+        (cdkDropListDropped)="drop($event)">
+        
+        <ticket-card *ngFor="let item of todo" cdkDrag></ticket-card>
+    </div> -->
+
+    <div class="column-container">
+        <h2 class="normal-case text-xl primary pl-2 pb-2">To do</h2>
+        <div class="column">
+            <div id="all" cdkDropList
+            [cdkDropListData]="todo">
+                <div
+                class="example-box"
+                *ngFor="let ticket of todo"
+                cdkDrag>
+                    <ticket-card
+                    [name]="ticket.name" [priority]="ticket.priority"
+                    [_id]="ticket._id" [description]="ticket.description"
+                    [progress]="ticket.progress" [tags]="ticket.tags"
+                    [type]="ticket.type">
+                    </ticket-card>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="column">
-        <div class="column" *ngFor="let ticket of tickets">
-            <div>{{ ticket.name }}</div>
-            <div>{{ ticket.priority }}</div>
-            <div>{{ ticket.description }}</div>
+
+    <div class="column-container">
+        <h2 class="normal-case text-xl primary pl-2 pb-2">In development</h2>
+        <div class="column">
+            <ticket-card *ngFor="let ticket of inDevelopment"
+            [name]="ticket.name" [priority]="ticket.priority"
+            [_id]="ticket._id" [description]="ticket.description"
+            [progress]="ticket.progress" [tags]="ticket.tags"
+            [type]="ticket.type">
+            </ticket-card>
         </div>
     </div>
+
+    <div class="column-container">
+        <h2 class="normal-case text-xl primary pl-2 pb-2">Code review</h2>
+        <div class="column">
+            <ticket-card *ngFor="let ticket of codeReview"
+            [name]="ticket.name" [priority]="ticket.priority"
+            [_id]="ticket._id" [description]="ticket.description"
+            [progress]="ticket.progress" [tags]="ticket.tags"
+            [type]="ticket.type">
+            </ticket-card>
+        </div>
+    </div>
+
+    <div class="column-container">
+        <h2 class="normal-case text-xl primary pl-2 pb-2">In test</h2>
+        <div class="column">
+            <ticket-card *ngFor="let ticket of inTest"
+            [name]="ticket.name" [priority]="ticket.priority"
+            [_id]="ticket._id" [description]="ticket.description"
+            [progress]="ticket.progress" [tags]="ticket.tags"
+            [type]="ticket.type">
+            </ticket-card>
+        </div>
+    </div>
+
+    <div class="column-container">
+        <h2 class="normal-case text-xl primary pl-2 pb-2">Done</h2>
+        <div class="column">
+            <ticket-card *ngFor="let ticket of done"
+            [name]="ticket.name" [priority]="ticket.priority"
+            [_id]="ticket._id" [description]="ticket.description"
+            [progress]="ticket.progress" [tags]="ticket.tags"
+            [type]="ticket.type">
+            </ticket-card>
+        </div>
+    </div>
+
 </div>

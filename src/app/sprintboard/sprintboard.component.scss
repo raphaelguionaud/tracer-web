@@ -5,4 +5,17 @@
 .column {
     display: flex;
     flex-direction: column;
+
+    ticket-card {
+        margin-bottom: 4px;
+    }
+
+    &-container {
+        padding: 10px;
+        padding-bottom: 20px;
+        margin: 6px;
+        background-color: rgb(242, 242, 242);
+        border-radius: 20px;
+        width: 300px;
+    }
 }
